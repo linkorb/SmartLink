@@ -10,11 +10,13 @@ class RegexLink
 
     private $regex;
     private $link;
+    private $nofollow = false;
 
-    public function __construct($regex, $link)
+    public function __construct($regex, $link, $nofollow = false)
     {
         $this->setRegex($regex);
         $this->link = $link;
+        $this->nofollow = $nofollow;
     }
 
     public function getRegex()
@@ -42,8 +44,10 @@ class RegexLink
         $output = preg_replace_callback(
             $this->regex,
             function($matches) {
-                $link = '<a href="' . str_replace('{{x}}', $matches[1], $this->link) . '">'.$matches[1].'</a>';
-                return $link;
+                preg_match('/\{\{(\d+?)\}\}/', $this->link, $m);
+                $text = $matches[$m[1]];
+                $link = str_replace($m[0], $text, $this->link);
+                return Utils::renderLinkHtml($text, $link, $this->nofollow);
             },
             $input
         );

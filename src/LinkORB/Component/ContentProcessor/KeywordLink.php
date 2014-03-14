@@ -10,11 +10,13 @@ class KeywordLink
 
     private $keyword;
     private $link;
-    
-    public function __construct($keyword, $link)
+    private $nofollow = false;
+
+    public function __construct($keyword, $link, $nofollow = false)
     {
         $this->keyword = $keyword;
         $this->link = $link;
+        $this->nofollow = $nofollow;
     }
 
     public function getKeyword()
@@ -36,9 +38,10 @@ class KeywordLink
     {
         $this->link = $link;
     }
-    
-    public function process($input) {
-        $link = '<a href="' . str_replace('{{x}}', $this->keyword, $this->link) . '">' . $this->keyword . '</a>';
+
+    public function process($input)
+    {
+        $link = Utils::renderLinkHtml($this->keyword, $this->link, $this->nofollow);
         $input = str_replace($this->keyword, $link, $input);
         return $input;
     }

@@ -22,23 +22,25 @@ class ContentProcessorTest extends PHPUnit_Framework_TestCase
         $process->addAutoCorrection(
             new AutoCorrection('FB', 'Facebook')
         );
-
-        $process->addKeywordLink(
-            new KeywordLink('Octocat', 'http://octodex.github.com')
-        );
-
-        $process->addRegexLink(
-            new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{x}}')
-        );
-
-        $process->addRegexLink(
-            new RegexLink('\+([A-Za-z0-9]+)', 'http://plus.google.com/+{{x}}/Posts')
-        );
         
         $process->addAutoCorrection(
             new AutoCorrection('+github', '+GitHub')
         );
 
+        $process->addKeywordLink(
+            new KeywordLink('Octocat', 'http://octodex.github.com')
+        )->addKeywordLink(
+            new KeywordLink('Github', 'http://github.com', true)
+        );
+
+        $process->addRegexLink(
+            new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{1}}', true)
+        );
+
+        $process->addRegexLink(
+            new RegexLink('\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', true)
+        );
+        
         echo $output = $process->process($input);
 
         $this->assertEquals($output, file_get_contents('tests/output.txt'));
