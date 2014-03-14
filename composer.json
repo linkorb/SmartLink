@@ -1,6 +1,9 @@
 {
-    "name": "linkorb/SmartLink",
+    "name": "linkorb/smartlink",
     "description": "SEO Smart Links",
+    "keywords": ["links", "SEO"],
+    "homepage": "https://github.com/linkorb/smartlink",
+    "license": "MIT",
     "authors": [
         {
             "name": "Cong Peijun",
