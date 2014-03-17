@@ -1,6 +1,6 @@
 <?php
 
-namespace LinkORB\Component\ContentProcessor;
+namespace LinkORB\Component\SmartLink;
 
 /**
  * @author Cong Peijun <p.cong@linkorb.com>

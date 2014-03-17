@@ -2,23 +2,23 @@
 
 namespace LinkORB\Component\ContentProcessor\Tests;
 
-use LinkORB\Component\ContentProcessor\AutoCorrection;
-use LinkORB\Component\ContentProcessor\ContentProcessor;
-use LinkORB\Component\ContentProcessor\KeywordLink;
-use LinkORB\Component\ContentProcessor\RegexLink;
+use LinkORB\Component\SmartLink\AutoCorrection;
+use LinkORB\Component\SmartLink\SmartLink;
+use LinkORB\Component\SmartLink\KeywordLink;
+use LinkORB\Component\SmartLink\RegexLink;
 use PHPUnit_Framework_TestCase;
 
 /**
  * @author Cong Peijun <p.cong@linkorb.com>
  */
-class ContentProcessorTest extends PHPUnit_Framework_TestCase
+class SmartLinkTest extends PHPUnit_Framework_TestCase
 {
 
     public function testProcess()
     {
         $input = file_get_contents('tests/input.txt');
 
-        $process = new ContentProcessor();
+        $process = new SmartLink();
         $process->addAutoCorrection(
             new AutoCorrection('FB', 'Facebook')
         );
