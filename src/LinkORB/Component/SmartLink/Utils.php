@@ -10,7 +10,7 @@ class Utils
 
     public static function renderLinkHtml($text, $link, $nofollw = false)
     {
-        $nofollwRel = $nofollw ? ' rel="nofollow" ' : '';
+        $nofollwRel = $nofollw ? ' rel="nofollow"' : '';
         return '<a href="' . $link . '"' . $nofollwRel . '>' . $text . '</a>';
     }
 }

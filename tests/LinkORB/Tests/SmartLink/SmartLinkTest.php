@@ -17,8 +17,10 @@ class SmartLinkTest extends PHPUnit_Framework_TestCase
     public function testProcess()
     {
         $input = file_get_contents('tests/input.txt');
-
         $process = new SmartLink();
+        
+        $process->enableAutoLink();
+        
         $process->addAutoCorrection(
             new AutoCorrection('FB', 'Facebook')
         );
@@ -31,6 +33,8 @@ class SmartLinkTest extends PHPUnit_Framework_TestCase
             new KeywordLink('Octocat', 'http://octodex.github.com')
         )->addKeywordLink(
             new KeywordLink('Github', 'http://github.com', true)
+        )->addKeywordLink(
+            new KeywordLink('google.com', 'http://google.com', true)
         );
 
         $process->addRegexLink(
@@ -41,8 +45,7 @@ class SmartLinkTest extends PHPUnit_Framework_TestCase
             new RegexLink('\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', true)
         );
         
-        echo $output = $process->process($input);
-
+        $output = $process->process($input);
         $this->assertEquals($output, file_get_contents('tests/output.txt'));
         //echo file_get_contents('tests/output.txt');
     }

@@ -39,10 +39,27 @@ class KeywordLink
         $this->link = $link;
     }
 
+    private function tidyKeyword()
+    {
+        $i = array(
+            '$', '^', '*', '(', ')', '+', '=', '{', '}', '[', ']', '|', ':', '<',
+            '>', '.', '?', '\'', '"', '/'
+        );
+
+        $o = array(
+            '\$', '\^', '\*', '\(', '\)', '\+', '\=', '\{', '\}', '\[', '\]', '\|',
+            '\:', '\<', '\>', '\.', '\?', '\\\'', '\\\"', '\/'
+        );
+
+        $this->keyword = str_replace($i, $o, $this->keyword);
+    }
+    
     public function process($input)
     {
         $link = Utils::renderLinkHtml($this->keyword, $this->link, $this->nofollow);
-        $input = str_replace($this->keyword, $link, $input);
+        $this->tidyKeyword();
+        $regex = '/(?!(?:[^<]+>|[^>]+<\/a>))(' . $this->keyword . ')/msU';
+        $input = preg_replace($regex, $link, $input);
         return $input;
     }
 }

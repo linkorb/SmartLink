@@ -1,5 +1,5 @@
 <p>Hello, my name is <a href="http://octodex.github.com">Octocat</a>.</p>
 <p>I like <a href="http://github.com" rel="nofollow">Github</a>, you can find it on <a href="http://github.com">http://github.com</a></p>
-<p>I also use <a href="http://google.com" rel="nofollow">google.com</a> a lot, and <a href="http://baidu.com">baidu.com</a> too.</p>
-<h3>Sometimes I use Facebook. <a href="http://dont.change.this.fb">fb test</a> and <img src="http://dont.change.this.too.fb" /></h3>
-<p>Link to Twitter: <a href="http://twitter.com/github">@github</a>, and google plus: <a href="http://plus.google.com/+GitHub/posts">+github</a>!</p>
+<p>I also use <a href="http://google.com" rel="nofollow">google.com</a> a lot, and <a href="http://baidu.com">http://baidu.com</a> too.</p>
+<h3>Sometimes I use Facebook. <a href="http://dont.change.this.fb">fb test</a>, here’s an image: <img src="http://dont.change.this.too.fb" /></h3>
+<p>Link to twitter: <a href="http://twitter.com/github" rel="nofollow">@github</a>, and google plus: <a href="http://plus.google.com/+GitHub/Posts" rel="nofollow">+GitHub</a>!</p>
