@@ -36,9 +36,14 @@ class SmartLink
         $this->autoLink = false;
     }
 
-    public function setNofollow($nofollow)
+    public function enableLinkFollow()
     {
-        $this->nofollow = $nofollow;
+        $this->nofollow = false;
+    }
+    
+    public function disableLinkFollow()
+    {
+        $this->nofollow = true;
     }
 
     /**
@@ -91,18 +96,20 @@ class SmartLink
         }
     }
     
-    public function autoLinkTwitter()
+    public function autoLinkTwitter($followlink = false)
     {
         $this->addRegexLink(
-            new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{1}}', true)
+            new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{1}}', $this->nofollow || $followlink)
         );
+        return $this;
     }
     
-    public function autoLinkGooglPlus()
+    public function autoLinkGooglPlus($followlink = false)
     {
         $this->addRegexLink(
-            new RegexLink('\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', true)
+            new RegexLink('\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', $this->nofollow || $followlink)
         );
+        return $this;
     }
 
     public function process($input)

@@ -36,7 +36,10 @@ class SmartLinkTest extends PHPUnit_Framework_TestCase
         )->addKeywordLink(
             new KeywordLink('google.com', 'http://google.com', true)
         );
-
+        /*
+        $process->autoLinkGooglPlus(true);
+        $process->autoLinkTwitter(true);
+        */
         $process->addRegexLink(
             new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{1}}', true)
         );

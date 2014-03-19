@@ -12,6 +12,9 @@ $input = <<<INPUT
     <p>Link to twitter: @github, and google plus: +github!</p>
 INPUT;
     $process = new ContentProcessor();
+
+    $process->enableAutoLink();
+
     $process->addAutoCorrection(
         new AutoCorrection('FB', 'Facebook')
     );
