@@ -52,4 +52,45 @@ class SmartLinkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, file_get_contents('tests/output.txt'));
         //echo file_get_contents('tests/output.txt');
     }
+    
+    public function testAutoLinkGooglPlus()
+    {
+        $input = <<<INPUT
+<p>Hello, my name is Octocat.</p>
+My google plus is +Github  a+b=c
+我的G+是+Peijun哈哈哈
+INPUT;
+        
+        $output = <<<OUTPUT
+<p>Hello, my name is Octocat.</p>
+My google plus is <a href="http://plus.google.com/+Github/Posts">+Github</a>  a+b=c
+我的G+是<a href="http://plus.google.com/+Peijun/Posts">+Peijun</a>哈哈哈
+OUTPUT;
+    
+        $smartlink = new SmartLink();
+        $smartlink->autoLinkGooglPlus();
+        $smartlink->process($input);
+        $this->assertEquals($output, $smartlink->process($input));
+    }
+    
+    public function testAutoLinkTwitter()
+    {
+        $input = <<<INPUT
+<p>Hello, my name is Octocat.</p>
+My twitter is @Github, and email is test@github.com
+你好，我的名字是丛培君
+我的推特是@_congpeijun
+INPUT;
+        
+        $output = <<<OUTPUT
+<p>Hello, my name is Octocat.</p>
+My twitter is <a href="http://twitter.com/Github">@Github</a>, and email is test@github.com
+你好，我的名字是丛培君
+我的推特是<a href="http://twitter.com/_congpeijun">@_congpeijun</a>
+OUTPUT;
+    
+        $smartlink = new SmartLink();
+        $smartlink->autoLinkTwitter();
+        $this->assertEquals($output, $smartlink->process($input));
+    }
 }

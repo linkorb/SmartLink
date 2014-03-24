@@ -99,7 +99,8 @@ class SmartLink
     public function autoLinkTwitter($followlink = false)
     {
         $this->addRegexLink(
-            new RegexLink('@([A-Za-z0-9]+)', 'http://twitter.com/{{1}}', $this->nofollow || $followlink)
+//            new RegexLink('@([A-Za-z0-9_]+)', 'http://twitter.com/{{1}}', $this->nofollow || $followlink)
+            new RegexLink('(?<!\w)@([A-z0-9_]+)', 'http://twitter.com/{{1}}', $this->nofollow || $followlink)
         );
         return $this;
     }
@@ -107,7 +108,7 @@ class SmartLink
     public function autoLinkGooglPlus($followlink = false)
     {
         $this->addRegexLink(
-            new RegexLink('\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', $this->nofollow || $followlink)
+            new RegexLink('(?<!\w)\+[A-Za-z0-9]+', 'http://plus.google.com/{{0}}/Posts', $this->nofollow || $followlink)
         );
         return $this;
     }
