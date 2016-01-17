@@ -11,7 +11,7 @@ $input = <<<INPUT
     <h3>Sometimes I use FB. <a href="http://dont.change.this.fb">fb test</a>, here's an image: <img src="http://dont.change.this.too.fb" /></h3>
     <p>Link to twitter: @github, and google plus: +github!</p>
 INPUT;
-    $process = new ContentProcessor();
+    $process = new SmartLink();
 
     $process->enableAutoLink();
 
